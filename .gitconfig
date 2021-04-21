@@ -1,2 +1,5 @@
 [init]
 	defaultBranch = master
+[user]
+	email = the.revived.1@gmail.com
+	name = maxsash
