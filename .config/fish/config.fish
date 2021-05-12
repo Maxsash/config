@@ -27,6 +27,18 @@ if test -d ~/Applications/depot_tools
     end
 end
 
+# Add cuda to PATH
+if test -d /opt/cuda
+    if not contains -- /opt/cuda/bin $PATH
+        set -p PATH /opt/cuda/bin
+    end
+    if not contains -- /opt/cuda/include $PATH
+        set -p PATH /opt/cuda/include
+    end
+    if not contains -- /opt/cuda/lib64 $PATH
+        set -p PATH /opt/cuda/lib64
+    end
+end
 
 ## Starship prompt
 if status --is-interactive
@@ -149,6 +161,9 @@ alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
 #Bare git repo for dotfiles
 alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 
+# Logout from KDE session
+alias logout="loginctl terminate-user maxsash"
+
 ## Import colorscheme from 'wal' asynchronously
 if type "wal" >> /dev/null 2>&1
    cat ~/.cache/wal/sequences
@@ -159,3 +174,9 @@ end
 #if status --is-interactive
    #paleofetch
 #end
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
+# <<< conda initialize <<<
+
