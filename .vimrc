@@ -1,4 +1,11 @@
+" These will make vim open with default settings, then this file will be used to customize on top of that.
+" See :help defaults.vim for more information
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
+
+
 " Keeping extra files in one directory [ // makes file names include paths to avoid collisions]
+" PLEASE MAKE SURE THE DIRECTORIES EXIST FOR THIS TO WORK
 set backupdir=$HOME/.vim/backup//
 set directory=$HOME/.vim/swap//
 set undodir=$HOME/.vim/undo//
