@@ -30,14 +30,6 @@ from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
-import subprocess
-from libqtile import hook
-
-mod = "mod1"
-terminal = "kitty"
-
-
-
 keys = [
     # Sound
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
@@ -207,7 +199,3 @@ focus_on_window_activation = "smart"
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
-
-@hook.subscribe.startup
-def startup():
-    lazy.spawn("feh --bg-scale /home/maxsash/Customization/wallpapers/astronaut-butterfly.jpg")
