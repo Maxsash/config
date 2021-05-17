@@ -30,6 +30,9 @@ from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
+mod = "mod1"
+terminal = "kitty"
+
 keys = [
     # Sound
     Key([], "XF86AudioMute", lazy.spawn("amixer -q set Master toggle")),
@@ -140,7 +143,10 @@ screens = [
                 ),
                 widget.Notify(),
                 widget.Spacer(),
-                widget.Volume(foreground = "70ff70"),
+                widget.TextBox("⯇", foreground="ffffff", background="000000", fontsize='23', padding=0, font= "Ubuntu Mono", fontsize=14),
+                widget.TextBox("Volume: " ,foreground="ff7070", background="ffffff", padding=5, font= "Ubuntu Mono", fontsize=14),
+                widget.Volume(foreground = "ff7070", background="ffffff", padding=9, font= "Ubuntu Mono", fontsize=14),
+                widget.TextBox("⯇", foreground="000000", background="ffffff", fontsize='23', padding=0, font= "Ubuntu Mono", fontsize=14),
                 widget.Battery(
                                 full_char='🔋',
                                 format='{char} {percent:2.0%}',
@@ -149,14 +155,15 @@ screens = [
                                 low_foreground='ff7070',
                                 #low_percentage='0.2',
                                 update_delay = 5,
-                                foreground = "7070ff",), 
+                                foreground = "7070ff",
+                                background="000000", fontsize=14), 
                 #widget.TextBox("default config", name="default"),
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
                 #widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
                 #widget.QuickExit(),
             ],
-            24,
+            20,
         ),
         wallpaper="astronaut.jpg",
         wallpaper_mode='stretch',
