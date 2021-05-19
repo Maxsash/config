@@ -169,7 +169,6 @@ if type "wal" >> /dev/null 2>&1
    cat ~/.cache/wal/sequences
 end
 
-
 ## Run paleofetch if session is interactive
 #if status --is-interactive
    #paleofetch
@@ -180,3 +179,5 @@ end
 eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
+#Swap Esc and CapsLock
+setxkbmap -option caps:swapescape
