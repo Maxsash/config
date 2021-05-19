@@ -30,6 +30,8 @@ from libqtile import bar, layout, widget
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
+import os
+
 mod = "mod1"
 terminal = "kitty"
 
@@ -104,9 +106,25 @@ for i in groups:
         #     desc="move focused window to group {}".format(i.name)),
     ])
 
+colors = [["#282c34", "#282c34"], # panel background
+          ["#3d3f4b", "#434758"], # background for current screen tab
+        ["#ffffff", "#ffffff"], # font color for group names
+          ["#ff5555", "#ff5555"], # border line color for current tab
+        ["#74438f", "#74438f"], # border line color for 'other tabs' and color for 'odd widgets'
+          ["#4f76c7", "#4f76c7"], # color for the 'even widgets'
+        ["#e1acff", "#e1acff"], # window name
+          ["#ecbbfb", "#ecbbfb"]] # backbround for inactive screens
+
+
+layout_theme = {"border_width": 2,
+        "margin": 8,
+        "border_focus": "e1acff",
+        "border_normal": "1D2330"
+        }
+
 layouts = [
-    layout.Columns(border_focus_stack='#d75f5f'),
-    layout.Max(),
+    layout.Columns(**layout_theme),
+    layout.Max(**layout_theme),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -121,32 +139,79 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font='sans',
+    font='Ubuntu Mono',
     fontsize=12,
-    padding=3,
+    padding=2,
+    background=colors[0]
 )
 extension_defaults = widget_defaults.copy()
+
+home = os.path.expanduser("~")
 
 screens = [
     Screen(
         bottom=bar.Bar(
             [
-                widget.CurrentLayout(),
-                widget.GroupBox(),
+                widget.CurrentLayout(
+                    foreground = colors[6],
+                    background = colors[0]
+                    ),
+                widget.GroupBox(
+                    font = "Ubuntu Bold",
+                    fontsize = 9,
+                    margin_y = 3,
+                    margin_x = 0,
+                    padding_y = 5,
+                    padding_x = 3,
+                    borderwidth = 3,
+                    active = colors[2],
+                    inactive = colors[7],
+                    rounded = False,
+                    highlight_color = colors[1],
+                    highlight_method = "line",
+                    this_current_screen_border = colors[6],
+                    this_screen_border = colors[4],
+                    other_current_screen_border = colors[6],
+                    other_screen_border = colors[4],
+                    foreground = colors[2],
+                    background = colors[0]
+                    ),
                 widget.Prompt(),
-                #widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
                 widget.Notify(),
                 widget.Spacer(),
-                widget.TextBox("⯇", foreground="ffffff", background="000000", fontsize='23', padding=0, font= "Ubuntu Mono", fontsize=14),
-                widget.TextBox("Volume: " ,foreground="ff7070", background="ffffff", padding=5, font= "Ubuntu Mono", fontsize=14),
-                widget.Volume(foreground = "ff7070", background="ffffff", padding=9, font= "Ubuntu Mono", fontsize=14),
-                widget.TextBox("⯇", foreground="000000", background="ffffff", fontsize='23', padding=0, font= "Ubuntu Mono", fontsize=14),
+                widget.Sep(
+                    linewidth = 0,
+                    padding = 6,
+                    foreground = colors[0],
+                    background = colors[0]
+                    ),
+                widget.TextBox(
+                    text = "⯇",
+                    foreground = colors[4],
+                    background = colors[0],
+                    fontsize=30,
+                    padding=0,
+                    font= "Ubuntu Mono"), 
+                widget.TextBox(
+                    text = "Volume: " ,
+                    foreground = colors[2],
+                    background = colors[4],
+                    padding=0,
+                    font= "Ubuntu Mono",
+                    fontsize=14),
+                widget.Volume(
+                    foreground = colors[2],
+                    background = colors[4],
+                    padding=5,
+                    font= "Ubuntu Mono",
+                    fontsize=14),
+                widget.TextBox(
+                    text = "⯇",
+                    foreground = colors[5],
+                    background = colors[4],
+                    fontsize=30,
+                    padding=0,
+                    font= "Ubuntu Mono"),
                 widget.Battery(
                                 full_char='🔋',
                                 format='{char} {percent:2.0%}',
@@ -155,8 +220,9 @@ screens = [
                                 low_foreground='ff7070',
                                 #low_percentage='0.2',
                                 update_delay = 5,
-                                foreground = "7070ff",
-                                background="000000", fontsize=14), 
+                                foreground = colors[2],
+                                background= colors[5],
+                                fontsize=14), 
                 #widget.TextBox("default config", name="default"),
                 #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
@@ -165,7 +231,7 @@ screens = [
             ],
             20,
         ),
-        wallpaper="astronaut.jpg",
+        wallpaper= str(home) + "/.config/qtile/astronaut.jpg",
         wallpaper_mode='stretch',
     ),
 ]
