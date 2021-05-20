@@ -42,3 +42,6 @@ set ignorecase
 
 " Set scroll margin to 8 lines
 set scrolloff=8
+
+" highlight colors
+autocmd VimEnter * ColorHighlight
