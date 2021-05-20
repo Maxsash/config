@@ -181,3 +181,6 @@ eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
 
 #Swap Esc and CapsLock
 setxkbmap -option caps:swapescape
+
+#explicitly set $VIMRUNTIME
+set VIMRUNTIME /usr/share/vim/vim82
