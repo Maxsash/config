@@ -26,11 +26,13 @@
 
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget
+from libqtile import bar, layout, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 
 import os
+
+import subprocess
 
 mod = "mod1"
 terminal = "kitty"
@@ -272,3 +274,12 @@ focus_on_window_activation = "smart"
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+
+@hook.subscribe.startup_once
+def autostart():
+        processes = [
+            ['picom', '--experimental-backends', '--backend', 'glx', '--xrender-sync-fence'],
+        ]
+
+        for p in processes:
+            subprocess.Popen(p)
