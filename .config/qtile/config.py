@@ -119,14 +119,14 @@ colors = [["#282c34", "#282c34"], # panel background
 
 
 layout_theme = {"border_width": 2,
-        "margin": 8,
+        "margin": 2,
         "border_focus": "e1acff",
         "border_normal": "1D2330"
         }
 
 layouts = [
-    layout.Columns(**layout_theme),
     layout.Max(**layout_theme),
+    layout.Columns(**layout_theme),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -225,11 +225,7 @@ screens = [
                                 foreground = colors[2],
                                 background= colors[5],
                                 fontsize=14), 
-                #widget.TextBox("default config", name="default"),
-                #widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
                 widget.Systray(),
-                #widget.Clock(format='%Y-%m-%d %a %I:%M %p'),
-                #widget.QuickExit(),
             ],
             20,
         ),
