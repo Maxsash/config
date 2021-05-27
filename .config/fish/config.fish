@@ -164,6 +164,9 @@ alias config="/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME"
 # Logout from KDE session
 alias logout="loginctl terminate-user maxsash"
 
+# For displaying images
+alias icat="kitty +kitten icat"
+
 ## Import colorscheme from 'wal' asynchronously
 if type "wal" >> /dev/null 2>&1
    cat ~/.cache/wal/sequences
