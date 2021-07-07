@@ -188,17 +188,10 @@ screens = [
                     background = colors[0]
                     ),
                 widget.TextBox(
-                    text = "⯇",
-                    foreground = colors[4],
-                    background = colors[0],
-                    fontsize=30,
-                    padding=0,
-                    font= "Ubuntu Mono"), 
-                widget.TextBox(
                     text = "Volume: " ,
                     foreground = colors[2],
                     background = colors[4],
-                    padding=0,
+                    padding=5,
                     font= "Ubuntu Mono",
                     fontsize=14),
                 widget.Volume(
@@ -207,13 +200,6 @@ screens = [
                     padding=5,
                     font= "Ubuntu Mono",
                     fontsize=14),
-                widget.TextBox(
-                    text = "⯇",
-                    foreground = colors[5],
-                    background = colors[4],
-                    fontsize=30,
-                    padding=0,
-                    font= "Ubuntu Mono"),
                 widget.Battery(
                                 format='{char} {percent:2.0%}',
                                 notify_below=20,
@@ -222,8 +208,14 @@ screens = [
                                 update_delay = 5,
                                 foreground = colors[2],
                                 background= colors[5],
-                                fontsize=14
+                                fontsize=14,
+                                padding=5
                                 ), 
+                widget.Clock(
+                        foreground = colors [2],
+                        background = colors[3],
+                        format = "%A, %B %d - %H:%M "
+                        ),
                 widget.Systray(),
             ],
             20,
