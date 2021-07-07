@@ -45,3 +45,6 @@ set scrolloff=8
 
 " highlight colors
 autocmd VimEnter * ColorHighlight
+
+" view pdfs
+:command! -complete=file -nargs=1 Rpdf :r !pdftotext -nopgbrk <q-args> -
