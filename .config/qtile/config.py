@@ -37,7 +37,8 @@ keys = [
 # ALT + FUNCTION KEYS
 
     Key([mod], "f", lazy.window.toggle_fullscreen()),
-    Key([mod], "d", lazy.spawn('nwggrid -p -o 0.4')), #Grauda settings
+    Key([mod], "w", lazy.spawn('firefox')), #Launch firefox
+    Key([mod], "d", lazy.spawn('nwggrid -p -o 0.4')), #App Menu
     Key([mod], "Escape", lazy.spawn('xkill')), #Click on anything to kill it
     Key([mod], "Return", lazy.spawn(myTerm)),
     Key([mod], "x", lazy.shutdown()),
@@ -51,6 +52,7 @@ keys = [
     Key([mod, "shift"], "r", lazy.restart()),
     Key([mod, "control"], "r", lazy.restart()),
     Key([mod, "shift"], "x", lazy.shutdown()),
+    Key([mod, "shift"], "b", lazy.spawn("barrier")),
 
 # SUPER + ... KEYS
 
@@ -355,22 +357,11 @@ def init_widgets_list():
                       foreground = colors[1],
                       background = colors[0]
                         ),
-
-                widget.Net(
-                         font="Noto Sans",
-                         fontsize=12,
-                        # Here enter your network name
-                         interface=["wlp3s0"],
-                         format = '{down} ↓↑ {up}',
-                         foreground=colors[1],
-                         background=colors[0],
-                         padding = 0,
-                         ),
                widget.Clock(
                         foreground = colors[1],
                         background = colors[0],
                         fontsize = 12,
-                        format="%d-%m || %H:%M"
+                        format="%d %m :%H:%M:%S"
                         ),
 
                widget.Systray(
@@ -423,14 +414,10 @@ def assign_app_group(client):
     #########################################################
     ################ assgin apps to groups ##################
     #########################################################
-    d["1"] = ["Alacritty", "Kitty",
-                "alacritty", "kitty", ]
-    d["2"] = [ "Firefox", "Google-chrome",
-                 "firefox", "google-chrome", ]
-    d["8"] = [ "TelegramDesktop", "Discord",
-                "telegramDesktop", "discord", ]
-    d["4"] = ["pcmanfm", "Nemo", "Caja", "Nautilus", "org.gnome.Nautilus", "Pcmanfm", "Pcmanfm-qt",
-               "pcmanfm", "nemo", "caja", "nautilus", "org.gnome.nautilus", "pcmanfm", "pcmanfm-qt", ]
+    d["1"] = ["Alacritty", "kitty"]
+    d["2"] = [ "firefox"]
+    d["8"] = [ "TelegramDesktop", "discord"]
+    d["4"] = ["pcmanfm", "Nautilus", "org.gnome.Nautilus"]
      ##########################################################
     wm_class = client.window.get_wm_class()[0]
 

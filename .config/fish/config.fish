@@ -167,6 +167,9 @@ alias logout="loginctl terminate-user maxsash"
 # For displaying images
 alias icat="kitty +kitten icat"
 
+# For ping above 200ms
+alias p200="ping 8.8.8.8 | awk -F"[= ]" '{if($10>200) {cmd="date"; cmd | getline dt; close(cmd) ; print dt, $10}}'"
+
 ## Import colorscheme from 'wal' asynchronously
 if type "wal" >> /dev/null 2>&1
    cat ~/.cache/wal/sequences
@@ -179,7 +182,7 @@ end
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
+#eval /opt/anaconda/bin/conda "shell.fish" "hook" $argv | source
 # <<< conda initialize <<<
 
 #Swap Esc and CapsLock
